@@ -1,4 +1,4 @@
-#TwitterOkinawa IRC Channel Log Viewer
+TwitterOkinawa IRC Channel Log Viewer
 ================================================================================
 
 あとで書く
