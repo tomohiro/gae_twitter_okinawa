@@ -9,13 +9,12 @@ template :layout do
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes /">
         <meta http-equiv="Content-Script-Type" content="text/javascript" />
         <meta http-equiv="Content-Style-Type" content="text/css" />
+        <meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes /">
         <link rel="stylesheet" type="text/css" href="/styles/reset-min.css" />
         <link rel="stylesheet" type="text/css" href="/styles/fonts-min.css" /> 
         <link rel="stylesheet" type="text/css" href="/styles/design.css" /> 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
         <title>TwitterOkinawa IRC Logs Viewer</title>
     </head>
     <body>
@@ -29,7 +28,7 @@ get '/' do
   response = Net::HTTP.start('kotatsumikan.ddo.jp').get('/cgi-bin/twitterokinawa.cgi')
   lines = []
   
-  response.body.each do |line|
+  response.body.to_a[0..50].each do |line|
     case line
     when /^\(.+?\)/
       lines.push notice(line)
@@ -51,7 +50,7 @@ def notice(line)
 end
 
 def message(line)
-  line[/^&lt;(.+?)&gt; (.+) (.+$)/]
+  line[/^&lt;#(.+?)&gt; (.+) (.+$)/]
   nick, content, timestamp = $1, $2, $3
 
   list_template(:message, nick, content, timestamp)
@@ -60,7 +59,7 @@ end
 def list_template(type, nick, content, timestamp)
   <<-LIST
 <li class="#{type}">
-<span class="nick">#{nick}</span>
+<span class="nick">#{nick}:</span>
 <span class="content">#{content}</span>
 </li>
   LIST
