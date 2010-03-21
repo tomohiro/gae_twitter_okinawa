@@ -7,32 +7,39 @@ body {
 
 li {
     margin: 2px;
-    padding: 5px;
+    padding: 4px;
+    line-height: 1.3em;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border: 1px solid #ccc;
 }
 
-li.message span.nick {
+span.nick {
     font-weight: bold;
     color: #069;
 }
 
 li.notice {
-    color: #666;
+    border-color: #aaf;
 }
 
-.notice span.nick {
+li.notice span.content {
+    color: #069;
+}
+
+li.hilight span.nick {
     padding: 3px 5px;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
-    background-color: gray;
+    background-color: #c03;
     color: #fff;
+}
+li.hilight span.content {
+    color: #c03;
 }
 
 span.content {
     padding-left: 5px;
-}
 }

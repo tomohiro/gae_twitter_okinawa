@@ -24,22 +24,27 @@ template :layout do
 LAYOUT
 end
 
-get '/' do
+get '/*' do
+  @keywords = params[:splat].to_s.split('-') 
+  erb %{
+  <ul>#{irc_logs.to_s}</ul>
+  }
+end
+
+def irc_logs
   response = Net::HTTP.start('kotatsumikan.ddo.jp').get('/cgi-bin/twitterokinawa.cgi')
-  lines = []
+  logs = []
   
   response.body.to_a[0..50].each do |line|
     case line
     when /^\(.+?\)/
-      lines.push notice(line)
+      logs.push notice(line)
     when /^&lt;.+?&gt;/
-      lines.push message(line)
+      logs.push message(line)
     end
   end
 
-  erb %{
-  <ul>#{lines.to_s}</ul>
-  }
+  logs
 end
 
 def notice(line)
@@ -57,10 +62,19 @@ def message(line)
 end
 
 def list_template(type, nick, content, timestamp)
+  type = "#{type} #{hilight(content)}"
   <<-LIST
-<li class="#{type}">
+<li class="#{type}" class="">
 <span class="nick">#{nick}:</span>
 <span class="content">#{content}</span>
 </li>
   LIST
+end
+
+def hilight(content)
+  hilight = ''
+  @keywords.each do |keyword|
+    hilight = 'hilight' if content =~ Regexp.new(keyword)
+  end
+  hilight
 end
