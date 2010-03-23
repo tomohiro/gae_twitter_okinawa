@@ -1,4 +1,17 @@
-TwitterOkinawa IRC Channel Log Viewer
+TwitterOkinawa IRC Logs Viewer
 ================================================================================
 
-あとで書く
+
+Environment
+--------------------------------------------------------------------------------
+
+- Google App Engine
+- JRuby
+- RubyGems
+    - google-appengine
+
+
+URI
+--------------------------------------------------------------------------------
+
+[#TwitterOkinawa IRC Logs Viewer](http://twitterokinawa.appspot.com)
