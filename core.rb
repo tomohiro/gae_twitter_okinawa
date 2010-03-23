@@ -11,11 +11,12 @@ template :layout do
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="Content-Script-Type" content="text/javascript" />
         <meta http-equiv="Content-Style-Type" content="text/css" />
+        <meta http-equiv="refresh" content="60">
         <meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes /">
         <link rel="stylesheet" type="text/css" href="/styles/reset-min.css" />
         <link rel="stylesheet" type="text/css" href="/styles/fonts-min.css" /> 
         <link rel="stylesheet" type="text/css" href="/styles/design.css" /> 
-        <title>TwitterOkinawa IRC Logs Viewer</title>
+        <title>#TwitterOkinawa IRC Logs Viewer</title>
     </head>
     <body>
       <%= yield %>
